@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
@@ -43,8 +44,10 @@ public class Client {
 								public void channelActive(
 										ChannelHandlerContext ctx)
 										throws Exception {
-									ctx.write(Unpooled.copiedBuffer("I'm OK",
+									ctx.writeAndFlush(Unpooled.copiedBuffer("I'm OK",
 											CharsetUtil.UTF_8));
+									ctx.writeAndFlush(Unpooled.EMPTY_BUFFER).addListener(ChannelFutureListener.CLOSE);
+									
 								}
 
 								@Override
@@ -71,7 +74,7 @@ public class Client {
 			});
 
 			ChannelFuture cf = bt.connect().sync();
-			cf.channel().close().sync();
+			cf.channel().closeFuture().sync();
 		} catch (Exception e) {
 			// TODO: handle exception
 			eg.shutdownGracefully().sync();
