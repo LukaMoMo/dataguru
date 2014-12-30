@@ -104,7 +104,6 @@ public class UserController
 		return "redirect:/user/users";
 	}	
 	
-	
 	@RequestMapping(value = "/{username}/delete",method = RequestMethod.GET)
 	public String update(@PathVariable String username) {
 		users.remove(username);

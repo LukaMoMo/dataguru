@@ -11,9 +11,8 @@
 	<a href="add">添加用户</a>
 	用户列表 <br/>
 	<c:forEach items="${users}" var="um">
-		<a href="${um.value.username }"> ${um.value.username } </a>---------------${um.value.password }---------------${um.value.email } ---- ${um.value.nickname}  <a href="${um.value.username}/update">更新用户 </a>
+		<a href="${um.value.username }"> ${um.value.username} </a>---------------${um.value.password }---------------${um.value.email } ---- ${um.value.nickname}  <a href="${um.value.username}/update">更新用户 </a>
 		<a href="${um.value.username}/delete">删除</a><br/>
-		
 	</c:forEach>
 </body>
 </html>

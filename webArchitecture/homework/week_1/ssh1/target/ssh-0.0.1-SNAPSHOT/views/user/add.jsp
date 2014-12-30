@@ -10,7 +10,7 @@
 <body>
 
 <!-- 没有写action  -->
-<fm:form method="post" modelAttribute="user" enctype="multipart/form-data"> <br/>
+<fm:form method="post" modelAttribute="user" id="user1" enctype="multipart/form-data"> <br/>
 	UserName:<fm:input path="username"/> <fm:errors path="username"></fm:errors> <br/>
 	Password:<fm:password path="password"/> <fm:errors path="password"></fm:errors> <br/>
 	NickName:<fm:input path="nickname"/> <fm:errors path="nickname"></fm:errors> <br/>
