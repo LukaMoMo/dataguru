@@ -12,6 +12,12 @@
 
 	<!-- 没有写action  -->
 	<form id="idmaps" method="post">
+		<input type="radio" name="queryType" value="mqq" checked="checked"/>qq 
+		<input type="radio" name="queryType" value="imei"/>imei
+		<input type="radio" name="queryType" value="imsi"/>imsi
+		<input type="radio" name="queryType" value="interWebo"/>interWebo
+		<input type="radio" name="queryType" value="sina"/>sina
+		
 		查询ID：<input type="text" name="queryID" id="queryID"> <input
 			type="submit">
 	</form>
@@ -44,9 +50,9 @@
 				</tr>
 				<tr>
 					<td>所在地</td>
-					<td>${qqRecord.province} ${qqRecord.city}</td>
+					<td>${qqRecord.province}${qqRecord.city}</td>
 				</tr>
-							
+
 			</table>
 		</div>
 
@@ -69,12 +75,7 @@
 			var myChart = ec.init(document.getElementById('main'));
 
 			option = {
-				title : {
-					text : '人物关系：xxxx',
-					subtext : 'xxx',
-					x : 'right',
-					y : 'bottom'
-				},
+			
 				tooltip : {
 					trigger : 'item',
 					formatter : '{a} : {b}'
@@ -94,23 +95,22 @@
 						}
 					}
 				},
-				legend : {
-					x : 'left',
-					data : [ '朋友' ]
-				},
 				series : [ {
 					type : 'force',
 					name : "人物关系",
 					ribbonType : false,
 					categories : [ {
-						name : '朋友'
+						
+						name : 'QQ好友',
+						name : 'WEIBO好友'
+
 					} ],
 					itemStyle : {
 						normal : {
 							label : {
 								show : true,
 								textStyle : {
-									color : '#333'
+									color : '#555'
 								}
 							},
 							nodeStyle : {
@@ -142,9 +142,21 @@
 					nodes : [ 
 							<c:forEach items="${grphx.vectexs}" var="node">
 								{
+									symbol:"image://../img/qq.jpg",
+									symbolSize:8,
+									draggable:true,
 									category : 0,
-									name : '${node}',
-									value : 2,
+									name : '${node.vectexID}',
+									label: '${node.vectexDetail}',
+									value : 4,
+									itemStyle: {
+										normal: {
+											label: {
+												position:"right",
+												
+											}
+										}
+									}
 								},
 							</c:forEach>    
 					          
@@ -158,7 +170,7 @@
 									source : '${edge.source}',
 									target : '${edge.dest}',
 									weight : 3,
-									name: "朋友",
+									name: "QQ好友",
 							},
 						</c:forEach>   
 					 ]
